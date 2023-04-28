@@ -1,7 +1,13 @@
-export default function HomePage() {
+import AppHeader from "../components/Header/Header.js";
+import AlbumList from "../components/AlbumList/Albumlist.js";
+
+const HomePage = () => {
   return (
-    <div>
-      <h1>Hello from Next.js</h1>
-    </div>
+    <>
+      <AppHeader />
+      <AlbumList />
+    </>
   );
-}
+};
+
+export default HomePage;
