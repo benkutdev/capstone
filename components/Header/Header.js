@@ -3,12 +3,15 @@ import styled from "styled-components";
 import recordLogo from "../../public/images/greenvinyl.png";
 
 const Header = styled.header`
-  position: relative;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 70px;
   background-color: #f39c12;
+  top: 0;
+  left: 0;
+  right: 0;
 `;
 
 const AppHeader = () => {
@@ -22,8 +25,8 @@ const AppHeader = () => {
         width={63}
         style={{
           position: "absolute",
-          top: 4,
-          left: 4,
+          top: "4px",
+          left: "4px",
         }}
       />
     </Header>
