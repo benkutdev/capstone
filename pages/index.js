@@ -1,7 +1,11 @@
+import AppHeader from "../components/Header/Header.js";
+import AlbumList from "../components/AlbumList/Albumlist.js";
+
 export default function HomePage() {
   return (
-    <div>
-      <h1>Hello from Next.js</h1>
-    </div>
+    <>
+      <AppHeader />
+      <AlbumList />
+    </>
   );
 }
