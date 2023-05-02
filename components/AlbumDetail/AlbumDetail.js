@@ -6,17 +6,17 @@ const AlbumDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
   background-color: #f39c12;
   border-radius: 7px;
   padding-top: 40px;
-  max-width: 400px;
-  margin: 0 auto;
+  max-width: 300px;
+  max-height: 900px;
+  margin: 90px auto 0;
 `;
 
 const AlbumImage = styled(Image)`
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   margin-bottom: 20px;
 `;

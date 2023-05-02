@@ -15,7 +15,14 @@ const AlbumListContainer = styled.div`
 
 const AlbumList = () => {
   const albumCovers = [
-    { id: 1, src: curtisAlbum },
+    {
+      id: 1,
+      src: curtisAlbum,
+      name: "Curtis Mayfield",
+      title: "Curtis (Deluxe Edition)",
+      genre: "Funk, Soul",
+      year: 1970,
+    },
     { id: 2, src: curtisAlbum },
     { id: 3, src: curtisAlbum },
     { id: 4, src: curtisAlbum },
