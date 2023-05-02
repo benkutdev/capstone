@@ -4,10 +4,12 @@ import Image from "next/image";
 
 const AlbumListContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 20px;
-  overflow-x: scroll;
-  padding: 20px;
+  gap: 16px;
+  justify-content: center;
+  margin: 32px auto 0;
+  max-width: 1200px;
+  padding: 0 16px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 `;
 
 const AlbumList = () => {
@@ -47,18 +49,18 @@ const AlbumList = () => {
   ];
 
   return (
-    <>
+    <AlbumListContainer>
       {albumCovers.map((album) => (
         <Image
           alt={album.id}
           src={album.src}
           key={album.id}
-          width={130}
-          height={130}
-          object-fit="cover"
+          width={140}
+          height={140}
+          style="cover"
         />
       ))}
-    </>
+    </AlbumListContainer>
   );
 };
 
