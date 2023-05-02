@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import curtisAlbum from "../../public/images/curtis.jpeg";
 import Image from "next/image";
+import Link from "next/link";
 
 const AlbumListContainer = styled.div`
   display: grid;
@@ -49,14 +50,16 @@ const AlbumList = () => {
   return (
     <AlbumListContainer>
       {albumCovers.map((album) => (
-        <Image
-          alt={album.id}
-          src={album.src}
-          key={album.id}
-          width={140}
-          height={140}
-          style="cover"
-        />
+        <Link href={`/album/${album.id}`} key={album.id}>
+          <Image
+            alt={album.id}
+            src={album.src}
+            key={album.id}
+            width={140}
+            height={140}
+            style="cover"
+          />
+        </Link>
       ))}
     </AlbumListContainer>
   );
