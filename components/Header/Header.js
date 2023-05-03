@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import recordLogo from "../../public/images/greenVinyl.png";
+import recordLogo from "../../public/images/greenvinyl.png";
 import { useRouter } from "next/router";
 
 const Header = styled.header`
