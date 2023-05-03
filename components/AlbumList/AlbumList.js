@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import curtisAlbum from "../../public/images/curtis.jpeg";
 import Image from "next/image";
+import Link from "next/link";
 
 const AlbumListContainer = styled.div`
   display: grid;
@@ -14,7 +15,14 @@ const AlbumListContainer = styled.div`
 
 const AlbumList = () => {
   const albumCovers = [
-    { id: 1, src: curtisAlbum },
+    {
+      id: 1,
+      src: curtisAlbum,
+      name: "Curtis Mayfield",
+      title: "Curtis (Deluxe Edition)",
+      genre: "Funk, Soul",
+      year: 1970,
+    },
     { id: 2, src: curtisAlbum },
     { id: 3, src: curtisAlbum },
     { id: 4, src: curtisAlbum },
@@ -47,18 +55,21 @@ const AlbumList = () => {
   ];
 
   return (
-    <AlbumListContainer>
-      {albumCovers.map((album) => (
-        <Image
-          alt={album.id}
-          src={album.src}
-          key={album.id}
-          width={140}
-          height={140}
-          style="cover"
-        />
-      ))}
-    </AlbumListContainer>
+    <>
+      <AlbumListContainer>
+        {albumCovers.map((album) => (
+          <Link href={`/album/${album.id}`} key={album.id}>
+            <Image
+              alt={album.id}
+              src={album.src}
+              width={140}
+              height={140}
+              object-fit="cover"
+            />
+          </Link>
+        ))}
+      </AlbumListContainer>
+    </>
   );
 };
 
