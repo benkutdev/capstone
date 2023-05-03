@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
+import BackButton from "../Button/BackButton.js";
 
 const AlbumDetailContainer = styled.div`
   display: flex;
@@ -23,15 +24,18 @@ const AlbumImage = styled(Image)`
 
 export default function AlbumDetail({ album, children }) {
   return (
-    <AlbumDetailContainer>
-      <AlbumImage
-        src={album.src}
-        alt={album.name}
-        key={album.id}
-        width={300}
-        height={300}
-      />
-      {children}
-    </AlbumDetailContainer>
+    <>
+      <AlbumDetailContainer>
+        <AlbumImage
+          src={album.src}
+          alt={album.name}
+          key={album.id}
+          width={300}
+          height={300}
+        />
+        {children}
+        <BackButton />
+      </AlbumDetailContainer>
+    </>
   );
 }
