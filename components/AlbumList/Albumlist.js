@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import curtisAlbum from "../../public/images/curtis.jpeg";
 import Image from "next/image";
@@ -55,20 +56,22 @@ const AlbumList = () => {
   ];
 
   return (
-    <AlbumListContainer>
-      {albumCovers.map((album) => (
-        <Link href={`/album/${album.id}`} key={album.id}>
-          <Image
-            alt={album.id}
-            src={album.src}
-            key={album.id}
-            width={140}
-            height={140}
-            style="cover"
-          />
-        </Link>
-      ))}
-    </AlbumListContainer>
+    <>
+      <AlbumListContainer>
+        {albumCovers.map((album) => (
+          <Link href={`/album/${album.id}`} key={album.id}>
+            <Image
+              alt={album.id}
+              src={album.src}
+              key={album.id}
+              width={140}
+              height={140}
+              style="cover"
+            />
+          </Link>
+        ))}
+      </AlbumListContainer>
+    </>
   );
 };
 
