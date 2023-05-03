@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import BackButton from "../Button/BackButton.js";
 
 const AlbumDetailContainer = styled.div`
   display: flex;
@@ -33,7 +32,6 @@ export default function AlbumDetail({ album, children }) {
         height={300}
       />
       {children}
-      <BackButton />
     </AlbumDetailContainer>
   );
 }
