@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
+ @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
   *,
   *::before,
   *::after {
@@ -9,7 +10,7 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: system-ui;
+    font-family: 'Bebas Neue';
     background-color: #145A32;
   }
 `;

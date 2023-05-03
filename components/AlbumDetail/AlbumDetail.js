@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import BackButton from "../Button/BackButton.js";
 
 const AlbumDetailContainer = styled.div`
   display: flex;
@@ -23,19 +23,17 @@ const AlbumImage = styled(Image)`
 `;
 
 export default function AlbumDetail({ album, children }) {
-  const router = useRouter();
-
   return (
     <AlbumDetailContainer>
       <AlbumImage
         src={album.src}
-        alt={album.id}
+        alt={album.name}
         key={album.id}
         width={300}
         height={300}
       />
       {children}
-      <button onClick={() => router.push("../")}>BACK</button>
+      <BackButton />
     </AlbumDetailContainer>
   );
 }

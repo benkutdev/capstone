@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import curtisAlbum from "../../public/images/curtis.jpeg";
 import Image from "next/image";
@@ -63,10 +62,9 @@ const AlbumList = () => {
             <Image
               alt={album.id}
               src={album.src}
-              key={album.id}
               width={140}
               height={140}
-              style="cover"
+              object-fit="cover"
             />
           </Link>
         ))}
