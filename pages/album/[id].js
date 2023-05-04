@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import AlbumDetail from "../../components/AlbumDetail/AlbumDetail";
+import AlbumDetail from "../../components/AlbumDetail/AlbumDetail.js";
 import curtisAlbum from "../../public/images/curtis.jpeg";
-import AppHeader from "@/components/Header/Header";
+import AppHeader from "../../components/Header/Header.js";
 
 export default function AlbumDetailPage() {
   const router = useRouter();

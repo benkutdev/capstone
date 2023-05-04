@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import recordLogo from "../../public/images/greenvinyl.png";
+import Link from "next/link";
 
 const Header = styled.header`
   position: fixed;
@@ -17,18 +18,20 @@ const Header = styled.header`
 const AppHeader = () => {
   return (
     <Header>
-      <Image
-        src={recordLogo}
-        alt="vinyl-round-logo"
-        title="vinyl-record"
-        height={63}
-        width={63}
-        style={{
-          position: "absolute",
-          top: "4px",
-          left: "4px",
-        }}
-      />
+      <Link href="/">
+        <Image
+          src={recordLogo}
+          alt="vinyl-round-logo"
+          title="vinyl-record"
+          height={63}
+          width={63}
+          style={{
+            position: "absolute",
+            top: "4px",
+            left: "4px",
+          }}
+        />
+      </Link>
     </Header>
   );
 };
