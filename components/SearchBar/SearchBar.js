@@ -48,19 +48,20 @@ const SearchResult = styled.div`
 
 const SearchResultsContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  justify-content: center;
   overflow-x: scroll;
   margin-top: 8px;
-
-  &::-webkit-scrollbar {
-    height: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #f39c12;
-    border-radius: 2px;
-  }
+  gap: 5px;
+  max-height: 400px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 290px;
+  background-color: #145a32;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
 `;
 
 const SearchBar = () => {
@@ -85,7 +86,7 @@ const SearchBar = () => {
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
-    if (event.target.value.length > 2) {
+    if (event.target.value.length > 4) {
       searchDiscogs(event.target.value);
     } else {
       setSearchResults([]);
@@ -120,8 +121,8 @@ const SearchBar = () => {
                 <Image
                   src={result.thumb}
                   alt={result.title}
-                  width={70}
-                  height={70}
+                  width={140}
+                  height={140}
                   style={{ objectFit: "contain" }}
                 />
               </SearchResult>
