@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { Bebas_Neue } from "@next/font/google";
+import { Bebas_Neue } from "next/font/google";
 
 const bebasNeue = Bebas_Neue({ subsets: ["latin"], weight: "400" });
 
