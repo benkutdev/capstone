@@ -71,9 +71,12 @@ const SearchBar = () => {
 
   const searchDiscogs = async (query) => {
     const API_URL = `/api/search?q=${query}`;
+    const headers = {
+      Authorization: `Discogs key=${process.env.NEXT_PUBLIC_DISCOGS_API_KEY}, secret=${process.env.NEXT_PUBLIC_DISCOGS_API_SECRET}`,
+    };
 
     try {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(API_URL, { headers });
 
       if (response.status === 200) {
         const searchResults = response.data.results;
