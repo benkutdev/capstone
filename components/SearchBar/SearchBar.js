@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import axios from "axios";
+import Image from "next/image";
+import Link from "next/link";
 
 const SearchContainer = styled.div`
   display: flex;
@@ -11,6 +13,7 @@ const SearchContainer = styled.div`
   border: 1px solid #f39c12;
   border-radius: 8px;
   padding: 2px;
+  position: relative;
 `;
 
 const SearchInput = styled.input`
@@ -19,6 +22,7 @@ const SearchInput = styled.input`
   width: 80px;
   padding: 1px;
   font-size: 12px;
+  color: #f39c12;
 
   &:focus {
     outline: none;
@@ -38,13 +42,31 @@ const SearchButton = styled.button`
   }
 `;
 
-const SearchBar = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const router = useRouter();
+const SearchResult = styled.div`
+  margin-right: 12px;
+`;
 
-  const handleSearchInputChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
+const SearchResultsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow-x: scroll;
+  margin-top: 8px;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #f39c12;
+    border-radius: 2px;
+  }
+`;
+
+const SearchBar = () => {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   const searchDiscogs = async (query) => {
     const API_URL = `/api/search?q=${query}`;
@@ -53,23 +75,33 @@ const SearchBar = () => {
       const response = await axios.get(API_URL);
 
       if (response.status === 200) {
-        // Here you can process the search results
-        console.log(response.data);
+        const searchResults = response.data.results;
+        setSearchResults(searchResults);
       }
     } catch (error) {
       console.error("Error fetching search results:", error);
     }
   };
 
-  const handleSearchSubmit = (event) => {
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+    if (event.target.value.length > 2) {
+      searchDiscogs(event.target.value);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
+  const handleSearchFormSubmit = (event) => {
     event.preventDefault();
-    searchDiscogs(searchQuery);
+    router.push(`/search?q=${searchQuery}`);
     setSearchQuery("");
+    setSearchResults([]);
   };
 
   return (
     <SearchContainer>
-      <form onSubmit={handleSearchSubmit}>
+      <form onSubmit={handleSearchFormSubmit}>
         <SearchInput
           type="text"
           placeholder=""
@@ -80,6 +112,23 @@ const SearchBar = () => {
           <FaSearch />
         </SearchButton>
       </form>
+      {searchResults.length > 0 && (
+        <SearchResultsContainer>
+          {searchResults.map((result) => (
+            <Link href={`/album/${result.id}`} key={result.id}>
+              <SearchResult key={result.id}>
+                <Image
+                  src={result.thumb}
+                  alt={result.title}
+                  width={70}
+                  height={70}
+                  style={{ objectFit: "contain" }}
+                />
+              </SearchResult>
+            </Link>
+          ))}
+        </SearchResultsContainer>
+      )}
     </SearchContainer>
   );
 };

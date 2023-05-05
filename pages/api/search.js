@@ -15,15 +15,18 @@ const search = async (req, res) => {
     });
 
     if (response.status === 200) {
+      console.log(response.data);
       res.status(200).json(response.data);
     } else {
+      console.error("Error fetching search results:", response);
       res
         .status(response.status)
         .json({ error: "Error fetching search results" });
     }
   } catch (error) {
     console.error("Error fetching search results:", error);
-    res.status(500).json({ error: "Error fetching search results" });
+    console.error("Error response data:", error.response.data);
+    res.status(500).json({ error: error.response.data });
   }
 };
 
