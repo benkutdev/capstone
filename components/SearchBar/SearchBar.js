@@ -2,6 +2,7 @@ import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import axios from "axios";
 
 const SearchContainer = styled.div`
   display: flex;
@@ -45,9 +46,24 @@ const SearchBar = () => {
     setSearchQuery(event.target.value);
   };
 
+  const searchDiscogs = async (query) => {
+    const API_URL = `/api/search?q=${query}`;
+
+    try {
+      const response = await axios.get(API_URL);
+
+      if (response.status === 200) {
+        // Here you can process the search results
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+  };
+
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    router.push(`/search?q=${searchQuery}`);
+    searchDiscogs(searchQuery);
     setSearchQuery("");
   };
 
