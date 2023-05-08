@@ -35,7 +35,7 @@ const SearchResults = ({ searchResults }) => {
         <Link href={`/album/${result.id}`} key={result.id}>
           <SearchResult key={result.id}>
             <Image
-              src={result.thumb}
+              src={result.cover_image}
               alt={result.title}
               width={140}
               height={140}
