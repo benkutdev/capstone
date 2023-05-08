@@ -2,9 +2,7 @@ import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import axios from "axios";
-import Image from "next/image";
-import Link from "next/link";
+import SearchResults from "../SearchResults/SearchResults.js";
 
 const SearchContainer = styled.div`
   display: flex;
@@ -42,65 +40,40 @@ const SearchButton = styled.button`
   }
 `;
 
-const SearchResult = styled.div`
-  margin-right: 12px;
-`;
-
-const SearchResultsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  overflow-x: scroll;
-  margin-top: 8px;
-  gap: 5px;
-  max-height: 400px;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 290px;
-  background-color: #145a32;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  z-index: 1;
-`;
-
 const SearchBar = () => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  const searchDiscogs = async (query) => {
-    const API_URL = `/api/search?q=${query}`;
-    const headers = {
-      Authorization: `Discogs key=${process.env.NEXT_PUBLIC_DISCOGS_API_KEY}, secret=${process.env.NEXT_PUBLIC_DISCOGS_API_SECRET}`,
-    };
-
-    try {
-      const response = await axios.get(API_URL, { headers });
-
-      if (response.status === 200) {
-        const searchResults = response.data.results;
-        setSearchResults(searchResults);
-      }
-    } catch (error) {
-      console.error("Error fetching search results:", error);
-    }
-  };
-
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
-    if (event.target.value.length > 4) {
-      searchDiscogs(event.target.value);
-    } else {
-      setSearchResults([]);
-    }
   };
 
-  const handleSearchFormSubmit = (event) => {
+  const handleSearchFormSubmit = async (event) => {
     event.preventDefault();
-    router.push(`/search?q=${searchQuery}`);
+    const query = searchQuery.trim();
+    if (query.length > 4) {
+      const API_KEY = process.env.NEXT_PUBLIC_DISCOGS_API_KEY;
+      const API_SECRET = process.env.NEXT_PUBLIC_DISCOGS_API_SECRET;
+      const API_URL = `https://api.discogs.com/database/search?q=${query}&type=artist,release&key=${API_KEY}&secret=${API_SECRET}`;
+      const headers = {
+        "User-Agent":
+          "MyVinylCollectionApp/1.0 +http://myvinylcollectionapp.example.com",
+      };
+
+      try {
+        const response = await fetch(API_URL, { headers });
+        const data = await response.json();
+
+        if (response.ok) {
+          const searchResults = data.results;
+          setSearchResults(searchResults);
+        }
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+      }
+    }
     setSearchQuery("");
-    setSearchResults([]);
   };
 
   return (
@@ -117,21 +90,7 @@ const SearchBar = () => {
         </SearchButton>
       </form>
       {searchResults.length > 0 && (
-        <SearchResultsContainer>
-          {searchResults.map((result) => (
-            <Link href={`/album/${result.id}`} key={result.id}>
-              <SearchResult key={result.id}>
-                <Image
-                  src={result.thumb}
-                  alt={result.title}
-                  width={140}
-                  height={140}
-                  style={{ objectFit: "contain" }}
-                />
-              </SearchResult>
-            </Link>
-          ))}
-        </SearchResultsContainer>
+        <SearchResults searchResults={searchResults} />
       )}
     </SearchContainer>
   );
