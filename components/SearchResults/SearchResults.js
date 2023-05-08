@@ -25,13 +25,17 @@ const SearchResultsContainer = styled.div`
 `;
 
 const SearchResults = ({ searchResults }) => {
+  const filteredResults = searchResults.filter(
+    (result) => result.type === "release"
+  );
+
   return (
     <SearchResultsContainer>
-      {searchResults.map((result) => (
+      {filteredResults.map((result) => (
         <Link href={`/album/${result.id}`} key={result.id}>
           <SearchResult key={result.id}>
             <Image
-              src={result.cover_image}
+              src={result.thumb}
               alt={result.title}
               width={140}
               height={140}
