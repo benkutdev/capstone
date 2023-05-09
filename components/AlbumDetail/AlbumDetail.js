@@ -28,8 +28,7 @@ export default function AlbumDetail({ album, children }) {
       <AlbumDetailContainer>
         <AlbumImage
           src={album.src}
-          alt={album.name}
-          key={album.id}
+          alt={album.title}
           width={300}
           height={300}
         />
