@@ -21,7 +21,7 @@ export default function AlbumDetailPage() {
             title: data.title,
             genre: data.genres[0],
             year: data.year,
-            src: coverImage || data.images[0].resource_url, // use coverImage if available, otherwise use first image from data
+            src: data.images[0].resource_url,
           };
 
           setAlbum(albumData);
