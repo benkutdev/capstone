@@ -11,7 +11,7 @@ export default function AlbumDetailPage() {
   useEffect(() => {
     async function fetchAlbum() {
       try {
-        const response = await fetch(`https://api.discogs.com/releases/${id}`);
+        const response = await fetch(`/api/releases/${id}`);
         const data = await response.json();
 
         if (response.ok) {
