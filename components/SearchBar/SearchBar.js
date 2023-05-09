@@ -52,18 +52,16 @@ const SearchBar = () => {
   const handleSearchFormSubmit = async (event) => {
     event.preventDefault();
     const query = searchQuery.trim();
-    if (query.length > 4) {
-      try {
-        const response = await fetch(`/api/Search?query=${query}`);
-        const data = await response.json();
+    try {
+      const response = await fetch(`/api/Search?query=${query}`);
+      const data = await response.json();
 
-        if (response.ok) {
-          const searchResults = data.results;
-          setSearchResults(searchResults);
-        }
-      } catch (error) {
-        console.error("Error fetching search results:", error);
+      if (response.ok) {
+        const searchResults = data.results;
+        setSearchResults(searchResults);
       }
+    } catch (error) {
+      console.error("Error fetching search results:", error);
     }
     setSearchQuery("");
   };

@@ -3,7 +3,7 @@ import Image from "next/image";
 import styled from "styled-components";
 
 const SearchResult = styled.div`
-  margin-right: 12px;
+  margin-top: 10px;
 `;
 
 const SearchResultsContainer = styled.div`
@@ -13,12 +13,12 @@ const SearchResultsContainer = styled.div`
   overflow-x: scroll;
   margin-top: 8px;
   gap: 5px;
-  max-height: 400px;
+  max-height: 450px;
   position: absolute;
   top: 100%;
   right: 0;
-  width: 290px;
-  background-color: #145a32;
+  width: 160px;
+  background-color: #f39c12;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1;
