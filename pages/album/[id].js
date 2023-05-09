@@ -5,7 +5,7 @@ import AppHeader from "../../components/Header/Header.js";
 
 export default function AlbumDetailPage() {
   const router = useRouter();
-  const { id, coverImage } = router.query;
+  const { id } = router.query;
   const [album, setAlbum] = useState(null);
 
   useEffect(() => {
