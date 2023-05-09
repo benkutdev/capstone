@@ -36,7 +36,7 @@ export default function AlbumDetailPage() {
     if (id) {
       fetchAlbum();
     }
-  }, [id, coverImage]);
+  }, [id]);
 
   return (
     <>
