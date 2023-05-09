@@ -42,12 +42,7 @@ export default function AlbumDetailPage() {
     <>
       <AppHeader />
       {album ? (
-        <AlbumDetail album={album}>
-          <p>{album.name}</p>
-          <p>{album.title}</p>
-          <p>{album.genre}</p>
-          <p>{album.year}</p>
-        </AlbumDetail>
+        <AlbumDetail album={album} />
       ) : (
         <p>Loading album...</p>
       )}
