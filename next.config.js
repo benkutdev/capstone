@@ -13,6 +13,9 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    domains: ["i.discogs.com", "st.discogs.com"],
+  },
 };
 
 module.exports = nextConfig;

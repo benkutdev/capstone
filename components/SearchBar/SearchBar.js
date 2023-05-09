@@ -2,6 +2,7 @@ import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import SearchResults from "../SearchResults/SearchResults.js";
 
 const SearchContainer = styled.div`
   display: flex;
@@ -10,6 +11,7 @@ const SearchContainer = styled.div`
   border: 1px solid #f39c12;
   border-radius: 8px;
   padding: 2px;
+  position: relative;
 `;
 
 const SearchInput = styled.input`
@@ -18,6 +20,7 @@ const SearchInput = styled.input`
   width: 80px;
   padding: 1px;
   font-size: 12px;
+  color: #f39c12;
 
   &:focus {
     outline: none;
@@ -38,22 +41,34 @@ const SearchButton = styled.button`
 `;
 
 const SearchBar = () => {
-  const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
   };
 
-  const handleSearchSubmit = (event) => {
+  const handleSearchFormSubmit = async (event) => {
     event.preventDefault();
-    router.push(`/search?q=${searchQuery}`);
+    const query = searchQuery.trim();
+    try {
+      const response = await fetch(`/api/Search?query=${query}`);
+      const data = await response.json();
+
+      if (response.ok) {
+        const searchResults = data.results;
+        setSearchResults(searchResults);
+      }
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
     setSearchQuery("");
   };
 
   return (
     <SearchContainer>
-      <form onSubmit={handleSearchSubmit}>
+      <form onSubmit={handleSearchFormSubmit}>
         <SearchInput
           type="text"
           placeholder=""
@@ -64,6 +79,9 @@ const SearchBar = () => {
           <FaSearch />
         </SearchButton>
       </form>
+      {searchResults.length > 0 && (
+        <SearchResults searchResults={searchResults} />
+      )}
     </SearchContainer>
   );
 };
