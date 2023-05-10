@@ -22,18 +22,20 @@ const AlbumImage = styled(Image)`
   margin-bottom: 20px;
 `;
 
-export default function AlbumDetail({ album, children }) {
+export default function AlbumDetail({ album }) {
   return (
     <>
       <AlbumDetailContainer>
         <AlbumImage
           src={album.src}
-          alt={album.name}
-          key={album.id}
+          alt={album.title}
           width={300}
           height={300}
         />
-        {children}
+        <p>{album.name}</p>
+        <p>{album.title}</p>
+        <p>{album.genre}</p>
+        <p>{album.year}</p>
         <BackButton />
       </AlbumDetailContainer>
     </>
