@@ -32,10 +32,7 @@ const SearchResults = ({ searchResults }) => {
   return (
     <SearchResultsContainer>
       {filteredResults.map((result) => (
-       <Link
-         href={`/album/${result.id}`}
-         key={result.id}
-       >
+        <Link href={`/album/${result.id}`} key={result.id}>
           <SearchResult>
             <Image
               src={result.cover_image}
