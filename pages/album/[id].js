@@ -1,9 +1,14 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import AlbumDetail from "../../components/AlbumDetail/AlbumDetail.js";
+import AlbumList from "../../components/AlbumList/AlbumList.js";
 import AppHeader from "../../components/Header/Header.js";
 
-export default function AlbumDetailPage() {
+export default function AlbumDetailPage({
+  albumCovers,
+  onAddToCollection,
+  onDeleteFromCollection,
+}) {
   const router = useRouter();
   const { id } = router.query;
   const [album, setAlbum] = useState(null);
@@ -41,7 +46,17 @@ export default function AlbumDetailPage() {
   return (
     <>
       <AppHeader />
-      {album ? <AlbumDetail album={album} /> : <p>Loading album...</p>}
+      {album ? (
+        <AlbumDetail
+          album={album}
+          onAdd={onAddToCollection}
+          albumCovers={albumCovers}
+          onDelete={onDeleteFromCollection}
+        />
+      ) : (
+        <p>Loading album...</p>
+      )}
+      <AlbumList albumCovers={albumCovers} onAlbumClick={onAddToCollection} />
     </>
   );
 }

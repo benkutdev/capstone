@@ -1,6 +1,5 @@
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import styled from "styled-components";
 import SearchResults from "../SearchResults/SearchResults.js";
 
@@ -41,7 +40,6 @@ const SearchButton = styled.button`
 `;
 
 const SearchBar = () => {
-  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
