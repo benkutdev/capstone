@@ -2,13 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import BackButton from "../Button/BackButton.js";
+import DeleteButton from "../Button/DeleteButton.js";
+import HeartButton from "../Button/HeartButton.js";
+import PlusButton from "../Button/PlusButton.js";
 
 const AlbumDetailContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #f39c12;
-  border-radius: 7px;
   padding-top: 40px;
   max-width: 300px;
   max-height: 900px;
@@ -22,22 +25,33 @@ const AlbumImage = styled(Image)`
   margin-bottom: 20px;
 `;
 
-export default function AlbumDetail({ album }) {
+const AlbumDetail = ({ album, onDelete, onAdd, albumCovers }) => {
+  const addToCollection = () => {
+    const albumExists = albumCovers.some(
+      (existingAlbum) => existingAlbum.id === album.id
+    );
+    if (!albumExists) {
+      onAdd(album);
+    }
+  };
+
+  const handleDelete = () => {
+    onDelete(album.id);
+  };
+
   return (
-    <>
-      <AlbumDetailContainer>
-        <AlbumImage
-          src={album.src}
-          alt={album.title}
-          width={300}
-          height={300}
-        />
-        <p>{album.name}</p>
-        <p>{album.title}</p>
-        <p>{album.genre}</p>
-        <p>{album.year}</p>
-        <BackButton />
-      </AlbumDetailContainer>
-    </>
+    <AlbumDetailContainer>
+      <HeartButton />
+      <AlbumImage src={album.src} alt={album.title} width={300} height={300} />
+      <p>{album.name}</p>
+      <p>{album.title}</p>
+      <p>{album.genre}</p>
+      <p>{album.year}</p>
+      <BackButton />
+      <DeleteButton onDelete={handleDelete} />
+      <PlusButton onAdd={addToCollection} album={album} />
+    </AlbumDetailContainer>
   );
-}
+};
+
+export default AlbumDetail;

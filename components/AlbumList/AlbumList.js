@@ -1,5 +1,5 @@
+import React from "react";
 import styled from "styled-components";
-import curtisAlbum from "../../public/images/curtis.jpeg";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,63 +13,27 @@ const AlbumListContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 `;
 
-const AlbumList = () => {
-  const albumCovers = [
-    {
-      id: 1,
-      src: curtisAlbum,
-      name: "Curtis Mayfield",
-      title: "Curtis (Deluxe Edition)",
-      genre: "Funk, Soul",
-      year: 1970,
-    },
-    { id: 2, src: curtisAlbum },
-    { id: 3, src: curtisAlbum },
-    { id: 4, src: curtisAlbum },
-    { id: 5, src: curtisAlbum },
-    { id: 6, src: curtisAlbum },
-    { id: 7, src: curtisAlbum },
-    { id: 8, src: curtisAlbum },
-    { id: 9, src: curtisAlbum },
-    { id: 10, src: curtisAlbum },
-    { id: 11, src: curtisAlbum },
-    { id: 12, src: curtisAlbum },
-    { id: 13, src: curtisAlbum },
-    { id: 14, src: curtisAlbum },
-    { id: 15, src: curtisAlbum },
-    { id: 16, src: curtisAlbum },
-    { id: 17, src: curtisAlbum },
-    { id: 18, src: curtisAlbum },
-    { id: 19, src: curtisAlbum },
-    { id: 20, src: curtisAlbum },
-    { id: 21, src: curtisAlbum },
-    { id: 22, src: curtisAlbum },
-    { id: 23, src: curtisAlbum },
-    { id: 24, src: curtisAlbum },
-    { id: 25, src: curtisAlbum },
-    { id: 26, src: curtisAlbum },
-    { id: 27, src: curtisAlbum },
-    { id: 28, src: curtisAlbum },
-    { id: 29, src: curtisAlbum },
-    { id: 30, src: curtisAlbum },
-  ];
+const AlbumCover = styled(Image)`
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+`;
 
+const AlbumList = ({ albumCovers, onAlbumClick }) => {
   return (
-    <>
-      <AlbumListContainer>
-        {albumCovers.map((album) => (
-          <Link href={`/album/${album.id}`} key={album.id}>
-            <Image
-              alt={album.id}
-              src={album.src}
-              width={140}
-              height={140}
-              object-fit="cover"
-            />
-          </Link>
-        ))}
-      </AlbumListContainer>
-    </>
+    <AlbumListContainer>
+      {albumCovers.map((album) => (
+        <Link href={`/album/${album.id}`} key={album.id}>
+          <AlbumCover
+            alt={album.title}
+            src={album.src}
+            width={140}
+            height={140}
+            onClick={() => onAlbumClick(album)}
+          />
+        </Link>
+      ))}
+    </AlbumListContainer>
   );
 };
 
