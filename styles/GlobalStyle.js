@@ -9,11 +9,11 @@ export default createGlobalStyle`
   *::before,
   *::after {
     box-sizing: border-box;
+    font-family: ${bebasNeue.style.fontFamily}; 
   }
 
   body {
     margin: 0;
-    font-family: ${bebasNeue.style.fontFamily}; 
     background-color: #145A32;
   }
 `;
