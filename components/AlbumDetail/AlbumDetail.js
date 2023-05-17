@@ -42,13 +42,7 @@ const AlbumDetail = ({ album, onDelete, onAdd, albumCovers }) => {
   return (
     <AlbumDetailContainer>
       <HeartButton />
-      <AlbumImage
-        src={album.src}
-        unoptimized
-        alt={album.title}
-        width={300}
-        height={300}
-      />
+      <AlbumImage src={album.src} alt={album.title} width={300} height={300} />
       <p>{album.name}</p>
       <p>{album.title}</p>
       <p>{album.genre}</p>

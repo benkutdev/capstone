@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import GlobalStyle from "../styles/GlobalStyle";
-import { SessionProvider } from "next-auth/react";
 
-export default function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}) {
+export default function App({ Component, pageProps }) {
   const [albumCovers, setAlbumCovers] = useState([]);
 
   useEffect(() => {
@@ -38,15 +34,13 @@ export default function App({
 
   return (
     <>
-      <SessionProvider session={session}>
-        <GlobalStyle />
-        <Component
-          {...pageProps}
-          albumCovers={albumCovers}
-          onAddToCollection={handleAddToCollection}
-          onDeleteFromCollection={handleDeleteFromCollection}
-        />
-      </SessionProvider>
+      <GlobalStyle />
+      <Component
+        {...pageProps}
+        albumCovers={albumCovers}
+        onAddToCollection={handleAddToCollection}
+        onDeleteFromCollection={handleDeleteFromCollection}
+      />
     </>
   );
 }

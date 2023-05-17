@@ -27,7 +27,6 @@ const AlbumList = ({ albumCovers, onAlbumClick }) => {
           <AlbumCover
             alt={album.title}
             src={album.src}
-            unoptimized
             width={140}
             height={140}
             onClick={() => onAlbumClick(album)}
