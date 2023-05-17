@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,6 +20,12 @@ const AlbumCover = styled(Image)`
 `;
 
 const AlbumList = ({ albumCovers, onAlbumClick }) => {
+  const searchInputRef = useRef(null);
+
+  const handleFocusSearchBar = () => {
+    searchInputRef.current.focus();
+  };
+
   return (
     <AlbumListContainer>
       {albumCovers.map((album) => (
