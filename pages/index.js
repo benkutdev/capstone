@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import AppHeader from "../components/Header/Header.js";
 import AlbumList from "../components/AlbumList/AlbumList.js";
 import AlbumDetail from "../components/AlbumDetail/AlbumDetail.js";
@@ -6,7 +6,7 @@ import AlbumDetail from "../components/AlbumDetail/AlbumDetail.js";
 const HomePage = () => {
   const [albumCovers, setAlbumCovers] = useState([]);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
-  const searchBarRef = useRef(null);
+  const [shouldFocusSearchBar, setShouldFocusSearchBar] = useState(false); // <-- New state variable
 
   useEffect(() => {
     const storedAlbums = localStorage.getItem("albumCovers");
@@ -42,11 +42,14 @@ const HomePage = () => {
 
   return (
     <>
-      <AppHeader searchBarRef={searchBarRef} />
+      <AppHeader
+        shouldFocusSearchBar={shouldFocusSearchBar}
+        setShouldFocusSearchBar={setShouldFocusSearchBar}
+      />{" "}
       <AlbumList
         albumCovers={albumCovers}
         onAlbumClick={handleAlbumClick}
-        searchBarRef={searchBarRef}
+        setShouldFocusSearchBar={setShouldFocusSearchBar}
       />
       {selectedAlbum && (
         <AlbumDetail
@@ -54,7 +57,6 @@ const HomePage = () => {
           onDelete={handleDeleteFromCollection}
           onAdd={handleAddToCollection}
           albumCovers={albumCovers}
-          searchBarRef={searchBarRef}
         />
       )}
     </>

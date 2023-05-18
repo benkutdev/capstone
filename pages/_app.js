@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import GlobalStyle from "../styles/GlobalStyle";
 import Head from "next/head";
 
 export default function App({ Component, pageProps }) {
   const [albumCovers, setAlbumCovers] = useState([]);
+  const searchBarRef = useRef([]);
 
   useEffect(() => {
     const storedAlbums = localStorage.getItem("albumCovers");
@@ -47,6 +48,7 @@ export default function App({ Component, pageProps }) {
         albumCovers={albumCovers}
         onAddToCollection={handleAddToCollection}
         onDeleteFromCollection={handleDeleteFromCollection}
+        searchBarRef={searchBarRef}
       />
     </>
   );

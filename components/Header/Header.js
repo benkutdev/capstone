@@ -18,7 +18,8 @@ const Header = styled.header`
   padding: 0 20px;
 `;
 
-const AppHeader = ({ searchBarRef }) => {
+const AppHeader = ({ shouldFocusSearchBar, setShouldFocusSearchBar }) => {
+  // <-- Add new props
   return (
     <Header>
       <Link href="/">
@@ -35,7 +36,10 @@ const AppHeader = ({ searchBarRef }) => {
           }}
         />
       </Link>
-      <SearchBar ref={searchBarRef} />
+      <SearchBar
+        shouldFocusSearchBar={shouldFocusSearchBar}
+        setShouldFocusSearchBar={setShouldFocusSearchBar}
+      />{" "}
     </Header>
   );
 };

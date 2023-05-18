@@ -1,6 +1,11 @@
-/* eslint-disable react/display-name */
 import { FaSearch } from "react-icons/fa";
-import { forwardRef, useState, useRef, useImperativeHandle } from "react";
+import {
+  forwardRef,
+  useState,
+  useRef,
+  useImperativeHandle,
+  useEffect,
+} from "react";
 import styled from "styled-components";
 import SearchResults from "../SearchResults/SearchResults.js";
 
@@ -40,7 +45,8 @@ const SearchButton = styled.button`
   }
 `;
 
-const SearchBar = forwardRef((_, ref) => {
+const SearchBar = forwardRef((props, ref) => {
+  const { shouldFocusSearchBar, setShouldFocusSearchBar } = props;
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const inputRef = useRef();
@@ -72,6 +78,13 @@ const SearchBar = forwardRef((_, ref) => {
     },
   }));
 
+  useEffect(() => {
+    if (shouldFocusSearchBar) {
+      inputRef.current.focus();
+      setShouldFocusSearchBar(false);
+    }
+  }, [shouldFocusSearchBar, setShouldFocusSearchBar]); // <-- Include setShouldFocusSearchBar in dependencies array
+
   return (
     <SearchContainer>
       <form onSubmit={handleSearchFormSubmit}>
@@ -92,5 +105,7 @@ const SearchBar = forwardRef((_, ref) => {
     </SearchContainer>
   );
 });
+
+SearchBar.displayName = "SearchBar"; // <-- Set the display name
 
 export default SearchBar;
