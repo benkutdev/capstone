@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,13 +19,23 @@ const AlbumCover = styled(Image)`
   object-fit: cover;
 `;
 
-const AlbumList = ({ albumCovers, onAlbumClick }) => {
-  const searchInputRef = useRef(null);
+const AddAlbumButton = styled.button`
+  width: 140px;
+  height: 140px;
+  background-color: #145a32;
+  color: white;
+  border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+`;
 
-  const handleFocusSearchBar = () => {
-    searchInputRef.current.focus();
+const AlbumList = ({ albumCovers, onAlbumClick, searchBarRef }) => {
+  const handleAddAlbumClick = () => {
+    searchBarRef.current.focus();
   };
-
   return (
     <AlbumListContainer>
       {albumCovers.map((album) => (
@@ -39,6 +49,11 @@ const AlbumList = ({ albumCovers, onAlbumClick }) => {
           />
         </Link>
       ))}
+      <AddAlbumButton
+        onClick={() => searchBarRef.current && searchBarRef.current.focus()}
+      >
+        Add Album
+      </AddAlbumButton>
     </AlbumListContainer>
   );
 };

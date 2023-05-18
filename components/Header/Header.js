@@ -1,3 +1,4 @@
+import React, { forwardRef } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import recordLogo from "../../public/images/orangeRecord.png";
@@ -17,7 +18,7 @@ const Header = styled.header`
   padding: 0 20px;
 `;
 
-const AppHeader = () => {
+const AppHeader = ({ searchBarRef }) => {
   return (
     <Header>
       <Link href="/">
@@ -34,7 +35,7 @@ const AppHeader = () => {
           }}
         />
       </Link>
-      <SearchBar />
+      <SearchBar ref={searchBarRef} />
     </Header>
   );
 };

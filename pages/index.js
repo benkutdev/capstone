@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AppHeader from "../components/Header/Header.js";
 import AlbumList from "../components/AlbumList/AlbumList.js";
 import AlbumDetail from "../components/AlbumDetail/AlbumDetail.js";
@@ -6,6 +6,7 @@ import AlbumDetail from "../components/AlbumDetail/AlbumDetail.js";
 const HomePage = () => {
   const [albumCovers, setAlbumCovers] = useState([]);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
+  const searchBarRef = useRef(null);
 
   useEffect(() => {
     const storedAlbums = localStorage.getItem("albumCovers");
@@ -41,14 +42,19 @@ const HomePage = () => {
 
   return (
     <>
-      <AppHeader />
-      <AlbumList albumCovers={albumCovers} onAlbumClick={handleAlbumClick} />
+      <AppHeader searchBarRef={searchBarRef} />
+      <AlbumList
+        albumCovers={albumCovers}
+        onAlbumClick={handleAlbumClick}
+        searchBarRef={searchBarRef}
+      />
       {selectedAlbum && (
         <AlbumDetail
           album={selectedAlbum}
           onDelete={handleDeleteFromCollection}
           onAdd={handleAddToCollection}
           albumCovers={albumCovers}
+          searchBarRef={searchBarRef}
         />
       )}
     </>

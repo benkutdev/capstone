@@ -1,5 +1,6 @@
+/* eslint-disable react/display-name */
 import { FaSearch } from "react-icons/fa";
-import { useState } from "react";
+import { forwardRef, useState, useRef, useImperativeHandle } from "react";
 import styled from "styled-components";
 import SearchResults from "../SearchResults/SearchResults.js";
 
@@ -39,9 +40,10 @@ const SearchButton = styled.button`
   }
 `;
 
-const SearchBar = () => {
+const SearchBar = forwardRef((_, ref) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const inputRef = useRef();
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
@@ -64,6 +66,12 @@ const SearchBar = () => {
     setSearchQuery("");
   };
 
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      inputRef.current.focus();
+    },
+  }));
+
   return (
     <SearchContainer>
       <form onSubmit={handleSearchFormSubmit}>
@@ -72,6 +80,7 @@ const SearchBar = () => {
           placeholder=""
           value={searchQuery}
           onChange={handleSearchInputChange}
+          ref={inputRef}
         />
         <SearchButton type="submit">
           <FaSearch />
@@ -82,6 +91,6 @@ const SearchBar = () => {
       )}
     </SearchContainer>
   );
-};
+});
 
 export default SearchBar;
