@@ -17,19 +17,35 @@ const AlbumCover = styled(Image)`
   width: 140px;
   height: 140px;
   object-fit: cover;
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: brightness(70%);
+  }
 `;
 
 const AddAlbumButton = styled.button`
   width: 140px;
   height: 140px;
   background-color: #145a32;
-  color: white;
-  border: 1px solid black;
+  color: #f39c12;
+  border: 1px solid #f39c12;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: rgba(243, 156, 18, 0.2);
+    border-color: #f39c12;
+  }
+
+  &:active {
+    background-color: #f39c12;
+    transform: scale(0.95);
+  }
 `;
 
 const AlbumList = ({ albumCovers, onAlbumClick, searchBarRef }) => {
