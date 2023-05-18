@@ -33,9 +33,6 @@ const AddAlbumButton = styled.button`
 `;
 
 const AlbumList = ({ albumCovers, onAlbumClick, searchBarRef }) => {
-  const handleAddAlbumClick = () => {
-    searchBarRef.current.focus();
-  };
   return (
     <AlbumListContainer>
       {albumCovers.map((album) => (
