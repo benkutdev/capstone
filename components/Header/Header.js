@@ -15,6 +15,7 @@ const Header = styled.header`
   left: 0;
   right: 0;
   padding: 0 20px;
+  z-index: 5;
 `;
 
 const AppHeader = ({ shouldFocusSearchBar, setShouldFocusSearchBar }) => {
