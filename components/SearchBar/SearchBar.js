@@ -1,13 +1,8 @@
 import { FaSearch } from "react-icons/fa";
-import {
-  forwardRef,
-  useState,
-  useRef,
-  useImperativeHandle,
-  useEffect,
-} from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import SearchResults from "../SearchResults/SearchResults.js";
+import { useFocus } from "../Focus/useFocus.js";
 
 const SearchContainer = styled.div`
   display: flex;
@@ -45,11 +40,10 @@ const SearchButton = styled.button`
   }
 `;
 
-const SearchBar = forwardRef((props, ref) => {
-  const { shouldFocusSearchBar, setShouldFocusSearchBar } = props;
+const SearchBar = ({ shouldFocusSearchBar, setShouldFocusSearchBar }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const inputRef = useRef();
+  const [focusRef, setFocus] = useFocus();
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
@@ -72,18 +66,12 @@ const SearchBar = forwardRef((props, ref) => {
     setSearchQuery("");
   };
 
-  useImperativeHandle(ref, () => ({
-    focus: () => {
-      inputRef.current.focus();
-    },
-  }));
-
   useEffect(() => {
     if (shouldFocusSearchBar) {
-      inputRef.current.focus();
+      setFocus();
       setShouldFocusSearchBar(false);
     }
-  }, [shouldFocusSearchBar, setShouldFocusSearchBar]);
+  }, [shouldFocusSearchBar, setShouldFocusSearchBar, setFocus]);
 
   return (
     <SearchContainer>
@@ -93,7 +81,7 @@ const SearchBar = forwardRef((props, ref) => {
           placeholder=""
           value={searchQuery}
           onChange={handleSearchInputChange}
-          ref={inputRef}
+          ref={focusRef}
         />
         <SearchButton type="submit">
           <FaSearch />
@@ -104,7 +92,7 @@ const SearchBar = forwardRef((props, ref) => {
       )}
     </SearchContainer>
   );
-});
+};
 
 SearchBar.displayName = "SearchBar";
 

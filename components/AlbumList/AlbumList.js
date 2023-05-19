@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 const AlbumListContainer = styled.div`
   display: grid;
@@ -21,7 +20,7 @@ const AlbumCover = styled(Image)`
   transition: filter 0.3s ease;
 
   &:hover {
-    filter: brightness(120%);
+    filter: brightness(70%);
   }
 `;
 
