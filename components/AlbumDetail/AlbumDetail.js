@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Image from "next/image";
 import BackButton from "../Button/BackButton.js";
 import DeleteButton from "../Button/DeleteButton.js";
-import HeartButton from "../Button/HeartButton.js";
 import PlusButton from "../Button/PlusButton.js";
 
 const AlbumDetailContainer = styled.div`
@@ -41,7 +40,6 @@ const AlbumDetail = ({ album, onDelete, onAdd, albumCovers }) => {
 
   return (
     <AlbumDetailContainer>
-      <HeartButton />
       <AlbumImage src={album.src} alt={album.title} width={300} height={300} />
       <p>{album.name}</p>
       <p>{album.title}</p>

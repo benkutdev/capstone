@@ -58,7 +58,6 @@ const SearchResults = ({ searchResults }) => {
 
   const fetchMoreResults = async () => {
     try {
-      // Fetch more results here if needed
     } catch (error) {
       console.error("Error fetching more search results:", error);
     }
