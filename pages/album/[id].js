@@ -56,7 +56,6 @@ export default function AlbumDetailPage({
       ) : (
         <p>Loading album...</p>
       )}
-      <AlbumList albumCovers={albumCovers} onAlbumClick={onAddToCollection} />
     </>
   );
 }

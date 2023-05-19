@@ -6,7 +6,7 @@ import AlbumDetail from "../components/AlbumDetail/AlbumDetail.js";
 const HomePage = () => {
   const [albumCovers, setAlbumCovers] = useState([]);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
-  const [shouldFocusSearchBar, setShouldFocusSearchBar] = useState(false); // <-- New state variable
+  const [shouldFocusSearchBar, setShouldFocusSearchBar] = useState(false);
 
   useEffect(() => {
     const storedAlbums = localStorage.getItem("albumCovers");

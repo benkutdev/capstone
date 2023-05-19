@@ -1,4 +1,3 @@
-import React, { forwardRef } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import recordLogo from "../../public/images/orangeRecord.png";
@@ -19,7 +18,6 @@ const Header = styled.header`
 `;
 
 const AppHeader = ({ shouldFocusSearchBar, setShouldFocusSearchBar }) => {
-  // <-- Add new props
   return (
     <Header>
       <Link href="/">

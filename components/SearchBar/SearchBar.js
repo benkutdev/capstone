@@ -83,7 +83,7 @@ const SearchBar = forwardRef((props, ref) => {
       inputRef.current.focus();
       setShouldFocusSearchBar(false);
     }
-  }, [shouldFocusSearchBar, setShouldFocusSearchBar]); // <-- Include setShouldFocusSearchBar in dependencies array
+  }, [shouldFocusSearchBar, setShouldFocusSearchBar]);
 
   return (
     <SearchContainer>
@@ -106,6 +106,6 @@ const SearchBar = forwardRef((props, ref) => {
   );
 });
 
-SearchBar.displayName = "SearchBar"; // <-- Set the display name
+SearchBar.displayName = "SearchBar";
 
 export default SearchBar;

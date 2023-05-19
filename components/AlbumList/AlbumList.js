@@ -20,7 +20,7 @@ const AlbumCover = styled(Image)`
   transition: filter 0.3s ease;
 
   &:hover {
-    filter: brightness(70%);
+    filter: brightness(120%);
   }
 `;
 

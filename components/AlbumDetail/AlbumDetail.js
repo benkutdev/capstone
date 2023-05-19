@@ -25,7 +25,7 @@ const AlbumImage = styled(Image)`
   margin-bottom: 20px;
 `;
 
-const AlbumDetail = ({ album, onDelete, onAdd, albumCovers, searchBarRef }) => {
+const AlbumDetail = ({ album, onDelete, onAdd, albumCovers }) => {
   const addToCollection = () => {
     const albumExists = albumCovers.some(
       (existingAlbum) => existingAlbum.id === album.id
