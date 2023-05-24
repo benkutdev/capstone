@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import AppHeader from "../components/Header/Header.js";
 import AlbumList from "../components/AlbumList/AlbumList.js";
 import AlbumDetail from "../components/AlbumDetail/AlbumDetail.js";
+import { useFocus } from "@/hooks/useFocus.js";
 
 const HomePage = () => {
   const [albumCovers, setAlbumCovers] = useState([]);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
-  const [shouldFocusSearchBar, setShouldFocusSearchBar] = useState(false);
+  const [focusRef, setFocus] = useFocus();
 
   useEffect(() => {
     const storedAlbums = localStorage.getItem("albumCovers");
@@ -42,14 +43,11 @@ const HomePage = () => {
 
   return (
     <>
-      <AppHeader
-        shouldFocusSearchBar={shouldFocusSearchBar}
-        setShouldFocusSearchBar={setShouldFocusSearchBar}
-      />{" "}
+      <AppHeader focusRef={focusRef} />{" "}
       <AlbumList
         albumCovers={albumCovers}
         onAlbumClick={handleAlbumClick}
-        setShouldFocusSearchBar={setShouldFocusSearchBar}
+        setFocus={setFocus}
       />
       {selectedAlbum && (
         <AlbumDetail

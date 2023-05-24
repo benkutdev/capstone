@@ -4,7 +4,6 @@ import Head from "next/head";
 
 export default function App({ Component, pageProps }) {
   const [albumCovers, setAlbumCovers] = useState([]);
-  const [shouldFocusSearchBar, setShouldFocusSearchBar] = useState(false);
 
   useEffect(() => {
     const storedAlbums = localStorage.getItem("albumCovers");
@@ -48,7 +47,6 @@ export default function App({ Component, pageProps }) {
         albumCovers={albumCovers}
         onAddToCollection={handleAddToCollection}
         onDeleteFromCollection={handleDeleteFromCollection}
-        setShouldFocusSearchBar={setShouldFocusSearchBar}
       />
     </>
   );

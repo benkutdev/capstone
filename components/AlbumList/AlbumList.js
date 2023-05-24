@@ -48,7 +48,7 @@ const AddAlbumButton = styled.button`
   }
 `;
 
-const AlbumList = ({ albumCovers, onAlbumClick, setShouldFocusSearchBar }) => {
+const AlbumList = ({ albumCovers, onAlbumClick, setFocus }) => {
   return (
     <AlbumListContainer>
       {albumCovers.map((album) => (
@@ -62,9 +62,7 @@ const AlbumList = ({ albumCovers, onAlbumClick, setShouldFocusSearchBar }) => {
           />
         </Link>
       ))}
-      <AddAlbumButton onClick={() => setShouldFocusSearchBar(true)}>
-        Add Album
-      </AddAlbumButton>
+      <AddAlbumButton onClick={setFocus}>Add Album</AddAlbumButton>
     </AlbumListContainer>
   );
 };

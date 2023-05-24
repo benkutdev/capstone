@@ -18,7 +18,7 @@ const Header = styled.header`
   z-index: 5;
 `;
 
-const AppHeader = ({ shouldFocusSearchBar, setShouldFocusSearchBar }) => {
+const AppHeader = ({ focusRef }) => {
   return (
     <Header>
       <Link href="/">
@@ -35,10 +35,7 @@ const AppHeader = ({ shouldFocusSearchBar, setShouldFocusSearchBar }) => {
           }}
         />
       </Link>
-      <SearchBar
-        shouldFocusSearchBar={shouldFocusSearchBar}
-        setShouldFocusSearchBar={setShouldFocusSearchBar}
-      />{" "}
+      <SearchBar focusRef={focusRef} />{" "}
     </Header>
   );
 };

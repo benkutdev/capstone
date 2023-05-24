@@ -2,7 +2,6 @@ import { FaSearch } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import SearchResults from "../SearchResults/SearchResults.js";
-import { useFocus } from "../Focus/useFocus.js";
 
 const SearchContainer = styled.div`
   display: flex;
@@ -40,10 +39,9 @@ const SearchButton = styled.button`
   }
 `;
 
-const SearchBar = ({ shouldFocusSearchBar, setShouldFocusSearchBar }) => {
+const SearchBar = ({ focusRef }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [focusRef, setFocus] = useFocus();
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
@@ -66,16 +64,10 @@ const SearchBar = ({ shouldFocusSearchBar, setShouldFocusSearchBar }) => {
     setSearchQuery("");
   };
 
-  useEffect(() => {
-    if (shouldFocusSearchBar) {
-      setFocus();
-      setShouldFocusSearchBar(false);
-    }
-  }, [shouldFocusSearchBar, setShouldFocusSearchBar, setFocus]);
-
   return (
     <SearchContainer>
       <form onSubmit={handleSearchFormSubmit}>
+        <label htmlFor="searchInput">Search:</label>
         <SearchInput
           type="text"
           placeholder=""

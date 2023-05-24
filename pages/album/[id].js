@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import AlbumDetail from "../../components/AlbumDetail/AlbumDetail.js";
 import AlbumList from "../../components/AlbumList/AlbumList.js";
 import AppHeader from "../../components/Header/Header.js";
+import { useFocus } from "@/hooks/useFocus.js";
 
 export default function AlbumDetailPage({
   albumCovers,
@@ -12,6 +13,7 @@ export default function AlbumDetailPage({
   const router = useRouter();
   const { id } = router.query;
   const [album, setAlbum] = useState(null);
+  const [focusRef, setFocus] = useFocus();
 
   useEffect(() => {
     async function fetchAlbum() {
@@ -45,7 +47,7 @@ export default function AlbumDetailPage({
 
   return (
     <>
-      <AppHeader />
+      <AppHeader focusRef={focusRef} />
       {album ? (
         <AlbumDetail
           album={album}
@@ -56,7 +58,11 @@ export default function AlbumDetailPage({
       ) : (
         <p>Loading album...</p>
       )}
-      <AlbumList albumCovers={albumCovers} onAlbumClick={onAddToCollection} />
+      <AlbumList
+        albumCovers={albumCovers}
+        onAlbumClick={onAddToCollection}
+        setFocus={setFocus}
+      />
     </>
   );
 }
