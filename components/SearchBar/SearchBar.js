@@ -1,5 +1,5 @@
 import { FaSearch } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import SearchResults from "../SearchResults/SearchResults.js";
 
@@ -67,7 +67,7 @@ const SearchBar = ({ focusRef }) => {
   return (
     <SearchContainer>
       <form onSubmit={handleSearchFormSubmit}>
-        <label htmlFor="searchInput">Search:</label>
+        <label htmlFor="searchInput" aria-hidden="true"></label>
         <SearchInput
           type="text"
           placeholder=""
