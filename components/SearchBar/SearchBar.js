@@ -39,7 +39,7 @@ const SearchButton = styled.button`
   }
 `;
 
-const SearchBar = () => {
+const SearchBar = ({ focusRef }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
@@ -67,11 +67,13 @@ const SearchBar = () => {
   return (
     <SearchContainer>
       <form onSubmit={handleSearchFormSubmit}>
+        <label htmlFor="searchInput" aria-hidden="true"></label>
         <SearchInput
           type="text"
           placeholder=""
           value={searchQuery}
           onChange={handleSearchInputChange}
+          ref={focusRef}
         />
         <SearchButton type="submit">
           <FaSearch />
@@ -83,5 +85,7 @@ const SearchBar = () => {
     </SearchContainer>
   );
 };
+
+SearchBar.displayName = "SearchBar";
 
 export default SearchBar;

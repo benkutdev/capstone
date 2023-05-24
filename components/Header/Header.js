@@ -15,9 +15,10 @@ const Header = styled.header`
   left: 0;
   right: 0;
   padding: 0 20px;
+  z-index: 5;
 `;
 
-const AppHeader = () => {
+const AppHeader = ({ focusRef }) => {
   return (
     <Header>
       <Link href="/">
@@ -34,7 +35,7 @@ const AppHeader = () => {
           }}
         />
       </Link>
-      <SearchBar />
+      <SearchBar focusRef={focusRef} />{" "}
     </Header>
   );
 };
