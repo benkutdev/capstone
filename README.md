@@ -19,5 +19,3 @@ React  -  Next.js  -  Styled Components  -   Discogs API  -  Jest Unit Testing
 
 https://github.com/benkutdev/capstone/assets/125696202/5612e0a8-e1fa-43cb-9b93-4156309ee05e
 
-Clone repository: "git clone git@github.com:benkutdev/capstone.git"
-
