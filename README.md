@@ -1,8 +1,6 @@
-# Capstone Project Template
+# Vinyl Round
 
-This project was created from the neuefische Next.js template.
-
-## Local development
+## Your digital record shelf
 
 To run project commands locally, you need to install the dependencies using `npm i` first.
 
