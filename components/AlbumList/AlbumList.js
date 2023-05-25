@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import AddAlbumButton from "./AddAlbumButton";
+import AddAlbumButton from "../Button/AddAlbumButton";
 
 const AlbumListContainer = styled.div`
   display: grid;
   gap: 16px;
   justify-content: center;
-  margin: 90px auto 10px;
+  margin: 90px auto 40px;
   max-width: 1200px;
   padding: 0 16px;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
