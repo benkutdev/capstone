@@ -8,4 +8,10 @@ describe("BackButton", () => {
     const backButton = screen.getByAltText("back-arrow");
     expect(backButton).toBeInTheDocument();
   });
+
+  it("navigates to the homepage when clicked", () => {
+    render(<BackButton />);
+    const backButton = screen.getByAltText("back-arrow");
+    expect(backButton.closest("a")).toHaveAttribute("href", "/");
+  });
 });
