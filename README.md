@@ -11,7 +11,7 @@
 
 ---
 
-Try the app and visit: https://capstone-vinyl-app.vercel.app/
+Try the app and visit: vinyl-round.vercel.app
 
 ## Techstack: 
 
