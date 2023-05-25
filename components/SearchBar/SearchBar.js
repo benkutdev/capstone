@@ -7,7 +7,7 @@ const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   background-color: #145a32;
-  border: 1px solid #f39c12;
+  border: 2px solid #f39c12;
   border-radius: 8px;
   padding: 2px;
   position: relative;
@@ -20,6 +20,7 @@ const SearchInput = styled.input`
   padding: 1px;
   font-size: 12px;
   color: #f39c12;
+  outline: none;
 
   &:focus {
     outline: none;
