@@ -5,7 +5,7 @@ const AddAlbumButton = styled.button`
   height: 140px;
   background-color: #145a32;
   color: #f39c12;
-  border: 2px solid #f39c12;
+  border: 1px solid #f39c12;
   cursor: pointer;
   display: flex;
   justify-content: center;
